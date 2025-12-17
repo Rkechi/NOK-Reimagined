@@ -120,7 +120,7 @@ export default function Home() {
               Why Choose Us
             </p>
             <h2 className="text-3xl font-semibold text-slate-900 md:text-4xl">
-              Why Nox Rocks Your World
+              Why Nok Rocks Your World
             </h2>
           </div>
 
@@ -233,11 +233,11 @@ export default function Home() {
             <div className="relative z-10 flex flex-col justify-between gap-8">
               <div className="space-y-4">
                 <h2 className="text-3xl font-semibold md:text-4xl text-white">
-                  Join the Nox Revolution
+                  Join the Nok Revolution
                 </h2>
                 <p className="text-sm leading-relaxed text-slate-200 md:text-base">
                   Thousands of happy folks are already powering their lives with
-                  Nox&apos;s clean energy and mobility solutions. Discover how we
+                  Nok&apos;s clean energy and mobility solutions. Discover how we
                   can help you electrify your home, fleet, or community.
                 </p>
               </div>
