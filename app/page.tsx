@@ -253,7 +253,7 @@ export default function Home() {
 
                 <a
                   href="#product"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300/60 bg-transparent px-7 py-3 text-sm font-semibold text-slate-50 transition hover:bg-slate-800"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300/60 bg-transparent px-7 py-3 text-sm font-semibold text-slate-50 transition hover:bg-slate-800 "
                 >
                   Explore Products
                   <span className="text-lg">→</span>
