@@ -1,3 +1,3 @@
 git add .
-git commit -m "slight name correction"
+git commit -m "landing page responsiveness fixed"
 git push
