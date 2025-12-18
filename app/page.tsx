@@ -1,124 +1,19 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
-import { FaFacebook, FaInstagram, FaTwitter, FaBars, FaTimes } from "react-icons/fa";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
 
 export default function Home() {
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-
   return (
     <div className="min-h-screen bg-[#f3faf6] text-slate-900">
       {/* Hero */}
-      <section className="relative min-h-[80vh] overflow-hidden bg-[url('/haythem-gataa-P6kIGVeys-0-unsplash.jpg')] bg-cover bg-center bg-no-repeat">
+      <section className="relative min-h-screen overflow-hidden bg-[url('/haythem-gataa-P6kIGVeys-0-unsplash.jpg')] bg-cover bg-center bg-no-repeat py-10">
         <div className="absolute inset-0 bg-slate-900/50" />
 
         {/* Top navigation */}
-        <header className="relative z-20 mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-0">
-          <div className="flex items-center gap-3">
-            <Image
-              src="/NOK-Inc-Company-LogoFinal-02-1.webp"
-              alt="NOK Inc logo"
-              width={170}
-              height={40}
-              priority
-              className="h-8 w-auto"
-            />
-          </div>
-
-          <nav className="hidden items-center gap-8 text-sm font-medium text-slate-100 md:flex">
-            <a href="#product" className="hover:text-emerald-300">
-              Product
-            </a>
-            <a href="#services" className="hover:text-emerald-300">
-              Services
-            </a>
-            <a href="#financing" className="hover:text-emerald-300">
-              Financing
-            </a>
-            <a href="#contact" className="hover:text-emerald-300">
-              Contact
-            </a>
-            <a href="#about" className="hover:text-emerald-300">
-              About
-            </a>
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <a
-              href="#contact"
-              className="hidden rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 shadow-lg shadow-emerald-900/30 transition hover:bg-emerald-100 md:inline-flex md:items-center md:gap-2"
-            >
-              Get in Touch
-              <span className="text-lg">↗</span>
-            </a>
-
-            {/* Mobile menu toggle */}
-            <button
-              type="button"
-              className="inline-flex items-center justify-center rounded-full bg-black/40 p-2 text-slate-100 ring-1 ring-white/20 transition hover:bg-black/60 md:hidden"
-              aria-label={mobileNavOpen ? "Close menu" : "Open menu"}
-              aria-expanded={mobileNavOpen}
-              onClick={() => setMobileNavOpen((open) => !open)}
-            >
-              {mobileNavOpen ? <FaTimes className="h-4 w-4" /> : <FaBars className="h-4 w-4" />}
-            </button>
-          </div>
-        </header>
-
-        {/* Mobile nav panel */}
-        {mobileNavOpen && (
-          <div className="relative z-10 mx-4 mt-2 rounded-2xl bg-black/70 px-4 py-4 text-sm text-slate-50 backdrop-blur-md sm:mx-6 md:hidden">
-            <div className="flex flex-col gap-3">
-              <a
-                href="#product"
-                className="py-1 font-medium hover:text-emerald-300"
-                onClick={() => setMobileNavOpen(false)}
-              >
-                Product
-              </a>
-              <a
-                href="#services"
-                className="py-1 font-medium hover:text-emerald-300"
-                onClick={() => setMobileNavOpen(false)}
-              >
-                Services
-              </a>
-              <a
-                href="#financing"
-                className="py-1 font-medium hover:text-emerald-300"
-                onClick={() => setMobileNavOpen(false)}
-              >
-                Financing
-              </a>
-              <a
-                href="#contact"
-                className="py-1 font-medium hover:text-emerald-300"
-                onClick={() => setMobileNavOpen(false)}
-              >
-                Contact
-              </a>
-              <a
-                href="#about"
-                className="py-1 font-medium hover:text-emerald-300"
-                onClick={() => setMobileNavOpen(false)}
-              >
-                About
-              </a>
-              <a
-                href="#contact"
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow-md shadow-emerald-900/40 hover:bg-emerald-500"
-                onClick={() => setMobileNavOpen(false)}
-              >
-                Get in Touch
-                <span className="text-lg">→</span>
-              </a>
-            </div>
-          </div>
-        )}
+        <Navbar />
 
         {/* Hero content */}
-        <div className="relative z-10 flex min-h-[calc(80vh-4.5rem)] items-center">
+        <div className="relative z-10 flex min-h-[calc(100vh-6rem)] items-center">
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-8 px-4 pb-16 pt-16 text-center sm:px-6 md:pb-24 md:pt-24">
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300">
               Clean-energy and mobility solutions
@@ -135,7 +30,7 @@ export default function Home() {
               smart batteries, and electric mobility that just works.
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-900/40 transition hover:bg-emerald-500"
@@ -476,69 +371,7 @@ export default function Home() {
         </div>
       </main>
 
-        <footer className="mx-auto w-full max-w-full space-y-10 px-4 py-8 sm:px-6 lg:px-0 bg-black/10 rounded-t-3xl border border-white/10">
-        <div className="mt-2 grid gap-6 border-t border-white/10 pt-6 text-md md:grid-cols-4 max-w-7xl mx-auto items-start text-center md:text-left">
-          <div className="md:col-span-1">
-            <Image src="/NOK-Inc-Company-LogoFinal-02-2.webp" alt="NOK Inc logo" width={170} height={40} className="h-8 w-auto" />
-          </div>
-
-          <div className="">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-800">
-              Working hours
-            </p>
-            <p className="mt-2 text-xs text-slate-500">
-              Mon – Fri: 7.00 – 22.00
-              <br />
-              Sat – Sun: 9.00 – 20.00
-            </p>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-800">
-              We are here
-            </p>
-            <p className="mt-2 text-xs text-slate-500">
-              27 Division St, New York,
-              <br />
-              NY 10002, USA
-            </p>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-800">
-              Call us
-            </p>
-            <p className="mt-2 text-xs text-slate-500">
-              +1 800 123 456 789
-              <br />
-              +1 800 987 654 321
-            </p>
-          </div>
-        </div>
-
-        
-
-        <div className="flex flex-col gap-6 border-t border-white/10 py-5 sm:flex-row sm:items-center sm:justify-between max-w-7xl mx-auto">
-          <div className="items-start gap-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-800">
-              Follow us
-            </p>
-            <p className="mt-2 flex flex-wrap items-center gap-4 text-xs text-slate-500 sm:gap-6">
-              <a href="https://www.facebook.com/NOKInc" className="hover:text-emerald-500 flex items-center gap-2 text-lg font-medium"><FaFacebook className="text-2xl" /> Facebook</a>
-              <a href="https://www.instagram.com/NOKInc" className="hover:text-emerald-500 flex items-center gap-2 text-lg font-medium"><FaInstagram className="text-2xl" /> Instagram</a>
-              <a href="https://www.twitter.com/NOKInc" className="hover:text-emerald-500 flex items-center gap-2 text-lg font-medium"><FaTwitter className="text-2xl" /> Twitter</a>
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-black/50 sm:justify-end sm:text-sm">
-            <a href="#product" className="hover:text-emerald-500">Product</a>
-            <a href="#services" className="hover:text-emerald-500">Services</a>
-            <a href="#financing" className="hover:text-emerald-500">Financing</a>
-            <a href="#contact" className="hover:text-emerald-500">Contact</a>
-            <a href="#about" className="hover:text-emerald-500">About</a>
-          </div>
-        </div>
-
-      </footer>
+      <Footer />
     </div>
   );
 }
