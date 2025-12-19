@@ -1,3 +1,3 @@
 git add .
-git commit -m "product page updated UI"
+git commit -m "overall UI update"
 git push

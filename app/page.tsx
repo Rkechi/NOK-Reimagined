@@ -86,9 +86,12 @@ export default function Home() {
         {/* Why choose us - bento grid */}
         <section id="product" className="space-y-8">
           <div className="space-y-3 text-center">
+            <div className="flex text-center align-center justify-center">
+            <Image src="/Nok-logo-standalone-2.png" width={20} height={20} alt="logo" />
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-600">
               Why Choose Us
             </p>
+            </div>
             <h2 className="text-3xl font-semibold text-slate-900 md:text-4xl">
               Why Nok Rocks Your World
             </h2>

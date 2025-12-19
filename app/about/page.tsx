@@ -7,17 +7,17 @@ import { Sprout, Users, Globe, Handshake } from "lucide-react";
 import { motion } from "framer-motion";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0 },
 };
 
 const staggerContainer = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.12,
+        },
     },
-  },
 };
 
 export default function About() {
@@ -135,12 +135,15 @@ export default function About() {
                         viewport={{ once: true, amount: 0.4 }}
                         variants={staggerContainer}
                     >
-                        <motion.p
-                            variants={fadeUp}
-                            className="text-xs font-semibold uppercase bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 bg-clip-text text-transparent tracking-[0.35em]"
-                        >
-                            Commitment
-                        </motion.p>
+                        <div className="flex items-center align-center justify-center">
+                            <Image src="/Nok-logo-standalone-2.png" width={20} height={20} alt="logo" />
+                            <motion.p
+                                variants={fadeUp}
+                                className="text-xs font-semibold uppercase bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 bg-clip-text text-transparent tracking-[0.35em]"
+                            >
+                                Commitment
+                            </motion.p>
+                        </div>
                         <motion.h2
                             variants={fadeUp}
                             className="mt-3 text-3xl font-semibold sm:text-4xl"
