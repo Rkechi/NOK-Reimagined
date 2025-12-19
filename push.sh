@@ -1,3 +1,3 @@
 git add .
-git commit -m "About infused with framer-motion"
+git commit -m "product page completed"
 git push

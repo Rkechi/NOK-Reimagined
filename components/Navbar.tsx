@@ -46,17 +46,22 @@ export function Navbar() {
           </a>
 
           {/* Desktop Nav */}
-          <nav className="hidden items-center gap-8 text-sm font-medium text-slate-100 md:flex">
-            {["Product", "Services", "Financing", "Contact"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="transition hover:text-emerald-300"
-              >
-                {item}
-              </a>
-            ))}
-            <a href="/about" className="hover:text-emerald-300">
+        <nav className="hidden items-center gap-8 text-sm font-medium text-slate-100 md:flex">
+          {[
+            { label: "Product", href: "/product" },
+            { label: "Services", href: "/services" },
+            { label: "Financing", href: "/financing" },
+            { label: "Contact", href: "/contact" },
+          ].map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="transition hover:text-emerald-300"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a href="/about" className="transition hover:text-emerald-300">
               About
             </a>
           </nav>
@@ -64,7 +69,7 @@ export function Navbar() {
           {/* Actions */}
           <div className="flex items-center gap-3">
             <a
-              href="#contact"
+              href="/contact"
               className="hidden rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 shadow-lg shadow-emerald-900/30 transition hover:bg-emerald-100 md:inline-flex"
             >
               Get in Touch ↗
@@ -104,21 +109,25 @@ export function Navbar() {
             "
           >
             <div className="flex flex-col gap-3">
-              {["Product", "Services", "Financing", "Contact", "About"].map(
-                (item) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className="py-1 font-medium transition hover:text-emerald-300"
-                    onClick={() => setMobileNavOpen(false)}
-                  >
-                    {item}
-                  </a>
-                )
-              )}
+              {[
+                { label: "Product", href: "/product" },
+                { label: "Services", href: "/services" },
+                { label: "Financing", href: "/financing" },
+                { label: "Contact", href: "/contact" },
+                { label: "About", href: "/about" },
+              ].map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="py-1 font-medium transition hover:text-emerald-300"
+                  onClick={() => setMobileNavOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
 
               <a
-                href="#contact"
+                href="/contact"
                 className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow-md shadow-emerald-900/40 transition hover:bg-emerald-500"
                 onClick={() => setMobileNavOpen(false)}
               >
