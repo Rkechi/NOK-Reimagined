@@ -1,3 +1,3 @@
 git add .
-git commit -m "Service Page hero text update"
+git commit -m "Vercel error cleared 1"
 git push
