@@ -90,11 +90,10 @@ export default function ServicePage() {
 
     return (
         <div className="min-h-screen bg-[#f3faf6] text-slate-900">
-            <Navbar />
-
             {/* HERO */}
             <section className="relative min-h-screen overflow-hidden bg-[url('/florida-solar-fix-XZP59dwklV4-unsplash.jpg')] bg-cover bg-center">
                 <div className="absolute inset-0 bg-slate-900/60" />
+                <Navbar />
 
                 <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -117,7 +116,7 @@ export default function ServicePage() {
                             From installation to lifetime support, NOK delivers clean energy systems designed for reliability, performance, and scale.
                         </p>
 
-                        <div className="mt-8 flex justify-center gap-4">
+                        <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row sm:justify-center mb-10">
                             <a href="#services" className="rounded-full bg-emerald-600 px-7 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-500">
                                 Explore Services →
                             </a>    
@@ -242,6 +241,7 @@ export default function ServicePage() {
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     whileHover={{ scale: 1.09 }}
+                    transition={{ delay: 0.6 }}
                     href="#" className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-8 py-3 text-sm font-semibold shadow-lg transition hover:bg-emerald-500">
                         Request a Quote <ArrowRight size={16} />
                     </motion.a>
