@@ -100,7 +100,7 @@ export default function ServicePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6 }}
-                 className="relative z-10 flex mib-h-[calc(100vh-6rem)] items-center pt-30">
+                 className="relative z-10 flex min-h-[calc(100vh-6rem)] justify-center text-center items-center pt-30">
                     <div className="mx-auto max-w-6xl px-6 text-center">
                         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300">
                             Our Services
@@ -116,7 +116,7 @@ export default function ServicePage() {
                             From installation to lifetime support, NOK delivers clean energy systems designed for reliability, performance, and scale.
                         </p>
 
-                        <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row sm:justify-center mb-10">
+                        <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row sm:justify-center xs:mb-10">
                             <a href="#services" className="rounded-full bg-emerald-600 px-7 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-500">
                                 Explore Services →
                             </a>    
