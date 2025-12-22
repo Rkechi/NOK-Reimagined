@@ -1,3 +1,3 @@
 git add .
-git commit -m "overall UI update"
+git commit -m "Service Page initial commit"
 git push
