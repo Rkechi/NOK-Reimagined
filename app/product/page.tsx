@@ -1,5 +1,6 @@
 "use client";
 
+import type { FC } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { Check } from "lucide-react";
@@ -7,7 +8,14 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 /* ------------------------- Product Card ------------------------- */
-const ProductCard = ({ title, image, features, index }) => {
+interface ProductCardProps {
+  title: string;
+  image: string;
+  features: string[];
+  index: number;
+}
+
+const ProductCard: FC<ProductCardProps> = ({ title, image, features, index }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
