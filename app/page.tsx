@@ -1,58 +1,20 @@
 import Image from "next/image";
-import { FaFacebook } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#f3faf6] text-slate-900">
       {/* Hero */}
-      <section className="relative min-h-[80vh] overflow-hidden bg-[url('/haythem-gataa-P6kIGVeys-0-unsplash.jpg')] bg-cover bg-center bg-h-full bg-no-repeat">
+      <section className="relative min-h-screen overflow-hidden bg-[url('/haythem-gataa-P6kIGVeys-0-unsplash.jpg')] bg-cover bg-center bg-no-repeat py-10">
         <div className="absolute inset-0 bg-slate-900/50" />
 
         {/* Top navigation */}
-        <header className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 py-6 lg:px-0">
-          <div className="flex items-center gap-3">
-            <Image
-              src="/NOK-Inc-Company-LogoFinal-02-1.webp"
-              alt="NOK Inc logo"
-              width={170}
-              height={40}
-              priority
-              className="h-8 w-auto"
-            />
-          </div>
-
-          <nav className="hidden items-center gap-8 text-sm font-medium text-slate-100 md:flex">
-            <a href="#product" className="hover:text-emerald-300">
-              Product
-            </a>
-            <a href="#services" className="hover:text-emerald-300">
-              Services
-            </a>
-            <a href="#financing" className="hover:text-emerald-300">
-              Financing
-            </a>
-            <a href="#contact" className="hover:text-emerald-300">
-              Contact
-            </a>
-            <a href="#about" className="hover:text-emerald-300">
-              About
-            </a>
-          </nav>
-
-          <a
-            href="#contact"
-            className="hidden rounded-full bg-white px-6 py-2 text-sm font-semibold text-slate-900 shadow-lg shadow-emerald-900/30 transition hover:bg-emerald-100 md:inline-flex md:items-center md:gap-2"
-          >
-            Get in Touch
-            <span className="text-lg">↗</span>
-          </a>
-        </header>
+        <Navbar />
 
         {/* Hero content */}
-        <div className="relative z-10 flex min-h-[calc(80vh-5rem)] items-center">
-          <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-6 pb-24 pt-10 text-center md:px-0 md:pb-32 md:pt-20">
+        <div className="relative z-10 flex min-h-[calc(100vh-6rem)] items-center">
+          <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-8 px-4 pb-16 pt-16 text-center sm:px-6 md:pb-24 md:pt-24">
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300">
               Clean-energy and mobility solutions
             </p>
@@ -68,7 +30,7 @@ export default function Home() {
               smart batteries, and electric mobility that just works.
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-900/40 transition hover:bg-emerald-500"
@@ -93,11 +55,19 @@ export default function Home() {
         {/* Intro */}
         <section
           id="about"
-          className="flex items-center gap-5 rounded-3xl px-1 py-10 shadow-xl shadow-emerald-900/5 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)] md:px-5 md:py-12 outline outline-slate-200"
+          className="grid items-center gap-8 rounded-3xl bg-white px-4 py-10 shadow-xl shadow-emerald-900/5 sm:px-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)] md:px-10 md:py-12"
         >
-          <div className="h-64 rounded-3xl md:h-80 flex items-center justify-center align-center h-full object-cover" />
-          <Image src="/chuttersnap-p8pqOtmgwco-unsplash.jpg" alt="About NOK Inc" width={500} height={500} className="rounded-3xl w-full h-full object-cover mr-10" />
-          <div className="space-y-4 text-left h-full">
+          <div className="h-56 w-full overflow-hidden rounded-3xl md:h-80">
+            <Image
+              src="/chuttersnap-p8pqOtmgwco-unsplash.jpg"
+              alt="About NOK Inc"
+              width={800}
+              height={600}
+              className="h-full w-full object-cover"
+              priority
+            />
+          </div>
+          <div className="space-y-4 text-left">
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-600">
               About NOK Inc
             </p>
@@ -115,18 +85,23 @@ export default function Home() {
 
         {/* Why choose us - bento grid */}
         <section id="product" className="space-y-8">
-          <div className="text-center space-y-3">
+          <div className="space-y-3 text-center">
+            <div className="flex text-center align-center justify-center">
+            <Image src="/Nok-logo-standalone-2.png" width={20} height={20} alt="logo" />
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-600">
               Why Choose Us
             </p>
+            </div>
             <h2 className="text-3xl font-semibold text-slate-900 md:text-4xl">
               Why Nok Rocks Your World
             </h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-4 auto-rows-[minmax(140px,1fr)]">
+          {/* On very small screens this becomes a simple stacked flex column;
+              from md and up it switches to the bento-style grid. */}
+          <div className="flex flex-col gap-4 sm:gap-6 md:grid md:grid-cols-4 md:auto-rows-[minmax(160px,1fr)]">
             {/* Reliable - large tile */}
-            <div className="col-span-2 row-span-2 flex flex-col justify-between rounded-3xl bg-white px-6 py-6 shadow-md shadow-emerald-900/5">
+            <div className="flex flex-col justify-between rounded-3xl bg-white px-5 py-5 sm:px-6 sm:py-6 shadow-md shadow-emerald-900/5 md:col-span-2 md:row-span-2">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
                   🌱
@@ -145,7 +120,7 @@ export default function Home() {
             </div>
 
             {/* Affordable */}
-            <div className="col-span-2 flex flex-col rounded-3xl bg-emerald-600 px-6 py-6 text-slate-50 shadow-md shadow-emerald-900/5">
+            <div className="flex flex-col rounded-3xl bg-emerald-600 px-5 py-5 sm:px-6 sm:py-6 text-slate-50 shadow-md shadow-emerald-900/5 md:col-span-2">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-white">
                   💸
@@ -159,7 +134,7 @@ export default function Home() {
             </div>
 
             {/* Simple */}
-            <div className="flex flex-col rounded-3xl bg-white px-6 py-6 shadow-md shadow-emerald-900/5">
+            <div className="flex flex-col rounded-3xl bg-white px-5 py-5 sm:px-6 sm:py-6 shadow-md shadow-emerald-900/5">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
                   ✅
@@ -172,7 +147,7 @@ export default function Home() {
             </div>
 
             {/* Scalable */}
-            <div className="flex flex-col rounded-3xl bg-white px-6 py-6 shadow-md shadow-emerald-900/5">
+            <div className="flex flex-col rounded-3xl bg-white px-5 py-5 sm:px-6 sm:py-6 shadow-md shadow-emerald-900/5">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
                   📈
@@ -188,7 +163,7 @@ export default function Home() {
             </div>
 
             {/* Sustainable - wide bottom tile */}
-            <div className="col-span-2 flex flex-col rounded-3xl bg-slate-900 px-6 py-6 text-slate-50 shadow-md shadow-emerald-900/5">
+            <div className="col-span-2 flex flex-col rounded-3xl bg-slate-900 px-5 py-5 sm:px-6 sm:py-6 text-slate-50 shadow-md shadow-emerald-900/5">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-white">
                   🌍
@@ -202,7 +177,7 @@ export default function Home() {
             </div>
 
             {/* Backed by experts */}
-            <div className="flex flex-col rounded-3xl bg-white px-6 py-6 shadow-md shadow-emerald-900/5">
+            <div className="flex flex-col rounded-3xl bg-white px-5 py-5 sm:px-6 sm:py-6 shadow-md shadow-emerald-900/5">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
                   🧠
@@ -224,13 +199,13 @@ export default function Home() {
           id="services"
           className="overflow-hidden rounded-3xl bg-slate-900 text-slate-50 shadow-xl shadow-emerald-900/40"
         >
-          <div className="relative grid items-stretch gap-10 px-6 py-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)] md:px-12 md:py-12 bg-[url('/waldemar-brandt-rHfTdK9YU2Q-unsplash.jpg')] bg-cover bg-center md:h-auto">
+          <div className="relative grid items-stretch gap-8 px-4 py-10 sm:px-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)] md:px-10 md:py-12 bg-[url('/waldemar-brandt-rHfTdK9YU2Q-unsplash.jpg')] bg-cover bg-center">
 
             {/* Background overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col justify-between gap-8">
+            <div className="relative z-10 flex flex-col justify-between gap-6">
               <div className="space-y-4">
                 <h2 className="text-3xl font-semibold md:text-4xl text-white">
                   Join the Nok Revolution
@@ -253,7 +228,7 @@ export default function Home() {
 
                 <a
                   href="#product"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300/60 bg-transparent px-7 py-3 text-sm font-semibold text-slate-50 transition hover:bg-slate-800"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300/60 bg-transparent px-7 py-3 text-sm font-semibold text-slate-50 transition hover:bg-slate-800 "
                 >
                   Explore Products
                   <span className="text-lg">→</span>
@@ -267,12 +242,12 @@ export default function Home() {
         </section>
 
         {/* Contact form */}
-        <div className="mx-auto w-full max-w-screen-xl px-6 md:px-12">
+        <div className="mx-auto w-full max-w-screen-xl px-4 sm:px-6 md:px-10">
           <section
             id="contact"
-            className="grid gap-10 rounded-3xl py-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)] md:py-12"
+            className="grid gap-8 rounded-3xl py-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)] md:gap-10 md:py-12"
           >
-            <div className="space-y-10 space-x-10">
+            <div className="space-y-6">
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-600">
                 Get in touch
               </p>
@@ -290,7 +265,7 @@ export default function Home() {
               </ul>
             </div>
 
-            <form className="space-y-4 rounded-2xl bg-slate-50 px-5 py-6 md:px-6 shadow-md shadow-emerald-900/10 border border-slate-200">
+            <form className="space-y-4 rounded-2xl bg-slate-50 px-4 py-6 sm:px-5 md:px-6 shadow-md shadow-emerald-900/10 border border-slate-200">
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-1.5">
                   <label
@@ -399,69 +374,7 @@ export default function Home() {
         </div>
       </main>
 
-        <footer className="mx-auto w-full max-w-full space-y-14 px-6 py-5 lg:px-0 text-center items-center bg-black/10 rounded-t-3xl border border-white/10" >
-        <div className="mt-4 grid gap-6 border-t border-white/10 pt-6 text-md md:grid-cols-4 max-w-7xl mx-auto items-center text-center justify-between">
-          <div className="md:col-span-1">
-            <Image src="/NOK-Inc-Company-LogoFinal-02-2.webp" alt="NOK Inc logo" width={170} height={40} className="h-8 w-auto" />
-          </div>
-
-          <div className="">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-800">
-              Working hours
-            </p>
-            <p className="mt-2 text-xs text-slate-500">
-              Mon – Fri: 7.00 – 22.00
-              <br />
-              Sat – Sun: 9.00 – 20.00
-            </p>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-800">
-              We are here
-            </p>
-            <p className="mt-2 text-xs text-slate-500">
-              27 Division St, New York,
-              <br />
-              NY 10002, USA
-            </p>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-800">
-              Call us
-            </p>
-            <p className="mt-2 text-xs text-slate-500">
-              +1 800 123 456 789
-              <br />
-              +1 800 987 654 321
-            </p>
-          </div>
-        </div>
-
-        
-
-        <div className="flex items-center gap-10 justify-between max-w-7xl mx-auto border-t-1 py-5">
-          <div className="items-center gap-2 justify-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-800">
-              Follow us
-            </p>
-            <p className="mt-2 text-xs text-slate-500 flex items-center gap-10">
-              <a href="https://www.facebook.com/NOKInc" className="hover:text-emerald-500 flex items-center gap-2 text-lg font-medium"><FaFacebook className="text-2xl" /> Facebook</a>
-              <a href="https://www.instagram.com/NOKInc" className="hover:text-emerald-500 flex items-center gap-2 text-lg font-medium"><FaInstagram className="text-2xl" /> Instagram</a>
-              <a href="https://www.twitter.com/NOKInc" className="hover:text-emerald-500 flex items-center gap-2 text-lg font-medium"><FaTwitter className="text-2xl" /> Twitter</a>
-            </p>
-          </div>
-          <div className="flex items-center gap-12 justify-center text-black/50 text-lg font-medium">
-            <a href="" className="hover:text-emerald-500"><p>Product</p></a>
-            <a href="" className="hover:text-emerald-500"><p>Services</p></a>
-            <a href="" className="hover:text-emerald-500"><p>Financing</p></a>
-            <a href="" className="hover:text-emerald-500"><p>Contact</p></a>
-            <a href="" className="hover:text-emerald-500"><p>About</p></a>
-          </div>
-        </div>
-
-      </footer>
+      <Footer />
     </div>
   );
 }
