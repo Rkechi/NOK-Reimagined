@@ -78,19 +78,19 @@ export function Footer() {
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-black/50 sm:justify-end sm:text-sm">
-          <a href="#product" className="hover:text-emerald-500">
+          <a href="/product" className="hover:text-emerald-500">
             Product
           </a>
-          <a href="#services" className="hover:text-emerald-500">
+          <a href="/services" className="hover:text-emerald-500">
             Services
           </a>
-          <a href="#financing" className="hover:text-emerald-500">
+          <a href="/finance" className="hover:text-emerald-500">
             Financing
           </a>
-          <a href="#contact" className="hover:text-emerald-500">
+          <a href="/contact" className="hover:text-emerald-500">
             Contact
           </a>
-          <a href="#about" className="hover:text-emerald-500">
+          <a href="/about" className="hover:text-emerald-500">
             About
           </a>
         </div>
