@@ -1,3 +1,3 @@
 git add .
-git commit -m "Vercel error cleared 1"
+git commit -m "Mobile Nav rearranged"
 git push

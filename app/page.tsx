@@ -5,12 +5,12 @@ import { Footer } from "../components/Footer";
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#f3faf6] text-slate-900">
+      {/* Top navigation */}
+      <Navbar />
+
       {/* Hero */}
       <section className="relative min-h-screen overflow-hidden bg-[url('/haythem-gataa-P6kIGVeys-0-unsplash.jpg')] bg-cover bg-center bg-no-repeat py-10">
         <div className="absolute inset-0 bg-slate-900/50" />
-
-        {/* Top navigation */}
-        <Navbar />
 
         {/* Hero content */}
         <div className="relative z-10 flex min-h-[calc(100vh-6rem)] items-center">
