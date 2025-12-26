@@ -50,7 +50,7 @@ export function Navbar() {
             {[
               { label: "Product", href: "/product" },
               { label: "Services", href: "/services" },
-              { label: "Financing", href: "/financing" },
+              { label: "Finance", href: "/finance" },
               { label: "Contact", href: "/contact" },
             ].map((link) => (
               <a

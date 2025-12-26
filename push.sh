@@ -1,3 +1,3 @@
 git add .
-git commit -m "Mobile Nav rearranged"
+git commit -m "Finance page initial commit"
 git push
