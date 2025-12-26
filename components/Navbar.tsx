@@ -46,22 +46,22 @@ export function Navbar() {
           </a>
 
           {/* Desktop Nav */}
-        <nav className="hidden items-center gap-8 text-sm font-medium text-slate-100 md:flex">
-          {[
-            { label: "Product", href: "/product" },
-            { label: "Services", href: "/services" },
-            { label: "Financing", href: "/financing" },
-            { label: "Contact", href: "/contact" },
-          ].map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="transition hover:text-emerald-300"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a href="/about" className="transition hover:text-emerald-300">
+          <nav className="hidden items-center gap-8 text-sm font-medium text-slate-100 md:flex">
+            {[
+              { label: "Product", href: "/product" },
+              { label: "Services", href: "/services" },
+              { label: "Financing", href: "/financing" },
+              { label: "Contact", href: "/contact" },
+            ].map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="transition hover:text-emerald-300"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a href="/about" className="transition hover:text-emerald-300">
               About
             </a>
           </nav>
@@ -102,9 +102,10 @@ export function Navbar() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
             className="
-              relative z-20 mx-4 mt-3
+              fixed inset-x-4 top-24 z-50
+              mx-auto max-w-7xl
               rounded-2xl border border-white/20
-              bg-black/70 backdrop-blur-xl
+              bg-black/80 backdrop-blur-xl
               px-5 py-4 text-sm text-slate-50 md:hidden
             "
           >
