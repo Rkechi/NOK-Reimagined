@@ -1,3 +1,3 @@
 git add .
-git commit -m "Finance page initial commit"
+git commit -m "nav active update"
 git push

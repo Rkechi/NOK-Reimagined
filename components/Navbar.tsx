@@ -2,12 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -34,7 +37,7 @@ export function Navbar() {
       >
         <div className="flex items-center justify-between gap-4 px-3 py-3 sm:px-4 sm:py-4">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <Image
               src="/NOK-Inc-Company-LogoFinal-02-1.webp"
               alt="NOK Inc logo"
@@ -43,7 +46,7 @@ export function Navbar() {
               priority
               className="h-8 w-auto"
             />
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden items-center gap-8 text-sm font-medium text-slate-100 md:flex">
@@ -52,28 +55,40 @@ export function Navbar() {
               { label: "Services", href: "/services" },
               { label: "Finance", href: "/finance" },
               { label: "Contact", href: "/contact" },
-            ].map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="transition hover:text-emerald-300"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a href="/about" className="transition hover:text-emerald-300">
+            ].map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`transition ${isActive
+                    ? "text-emerald-400 font-semibold underline decoration-2 underline-offset-4"
+                    : "hover:text-emerald-300"
+                    }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+            <Link
+              href="/about"
+              className={`transition ${pathname === "/about"
+                ? "text-emerald-400 font-semibold underline decoration-2 underline-offset-4"
+                : "hover:text-emerald-300"
+                }`}
+            >
               About
-            </a>
+            </Link>
           </nav>
 
           {/* Actions */}
           <div className="flex items-center gap-3">
-            <a
+            <Link
               href="/contact"
               className="hidden rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 shadow-lg shadow-emerald-900/30 transition hover:bg-emerald-100 md:inline-flex"
             >
               Get in Touch ↗
-            </a>
+            </Link>
 
             {/* Mobile toggle */}
             <button
@@ -113,27 +128,33 @@ export function Navbar() {
               {[
                 { label: "Product", href: "/product" },
                 { label: "Services", href: "/services" },
-                { label: "Financing", href: "/financing" },
+                { label: "Finance", href: "/finance" },
                 { label: "Contact", href: "/contact" },
                 { label: "About", href: "/about" },
-              ].map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="py-1 font-medium transition hover:text-emerald-300"
-                  onClick={() => setMobileNavOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
+              ].map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className={`py-1 font-medium transition ${isActive
+                        ? "text-emerald-400 font-bold underline decoration-2 underline-offset-4"
+                        : "hover:text-emerald-300"
+                      }`}
+                    onClick={() => setMobileNavOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
 
-              <a
+              <Link
                 href="/contact"
                 className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow-md shadow-emerald-900/40 transition hover:bg-emerald-500"
                 onClick={() => setMobileNavOpen(false)}
               >
                 Get in Touch →
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
