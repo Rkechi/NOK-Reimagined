@@ -1,3 +1,3 @@
 git add .
-git commit -m "nav active update"
+git commit -m "Contact page initial commit"
 git push
