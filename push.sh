@@ -1,3 +1,3 @@
 git add .
-git commit -m "Contact page initial commit"
+git commit -m "Landing page upgrade"
 git push
