@@ -182,16 +182,64 @@ export default function ContactPage() {
             message: '',
         });
 
+    const [formState, setFormState] = useState<{
+        isSubmitting: boolean;
+        isSuccess: boolean;
+        error: string | null;
+    }>({
+        isSubmitting: false,
+        isSuccess: false,
+        error: null,
+    });
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        // This handles the submission of the form
+
+        setFormState({ isSubmitting: true, isSuccess: false, error: null });
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to send message');
+            }
+
+            setFormState({ isSubmitting: false, isSuccess: true, error: null });
+            // Reset form
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                interest: '',
+                message: '',
+            });
+
+            // Auto-hide success message after 5 seconds
+            setTimeout(() => {
+                setFormState(prev => ({ ...prev, isSuccess: false }));
+            }, 5000);
+        } catch (error) {
+            setFormState({
+                isSubmitting: false,
+                isSuccess: false,
+                error: error instanceof Error ? error.message : 'Something went wrong. Please try again.',
+            });
+        }
     };
+
 
     const contactMethods = [
         {
@@ -650,11 +698,60 @@ export default function ContactPage() {
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             type="submit"
-                            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-900/30 transition hover:bg-emerald-500"
+                            disabled={formState.isSubmitting}
+                            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-900/30 transition hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            Submit Request
-                            <span className="text-lg">→</span>
+                            {formState.isSubmitting ? (
+                                <>
+                                    <motion.span
+                                        animate={{ rotate: 360 }}
+                                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                        className="text-lg"
+                                    >
+                                        ⏳
+                                    </motion.span>
+                                    Sending...
+                                </>
+                            ) : (
+                                <>
+                                    Submit Request
+                                    <span className="text-lg">→</span>
+                                </>
+                            )}
                         </motion.button>
+
+                        {/* Success Message */}
+                        {formState.isSuccess && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-emerald-700"
+                            >
+                                <span className="text-2xl">✓</span>
+                                <p className="text-sm font-medium">
+                                    Thank you! We've received your message and will get back to you within 24 hours.
+                                </p>
+                            </motion.div>
+                        )}
+
+                        {/* Error Message */}
+                        {formState.error && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="flex items-center gap-3 bg-red-50 border border-red-200 rounded-2xl p-4 text-red-700"
+                            >
+                                <span className="text-2xl">⚠️</span>
+                                <div className="flex-1">
+                                    <p className="text-sm font-medium">{formState.error}</p>
+                                    <p className="text-xs mt-1 text-red-600">
+                                        Please try again or contact us directly at info@nokinc.com
+                                    </p>
+                                </div>
+                            </motion.div>
+                        )}
 
                         <p className="text-xs text-slate-500 leading-relaxed">
                             <span className="pr-2">*</span>

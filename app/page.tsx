@@ -100,7 +100,7 @@ export default function Home() {
                 </motion.span>
               </motion.a>
               <motion.a
-                href="#product"
+                href="/product"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/5 px-7 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/15"
@@ -385,7 +385,7 @@ function CTABanner() {
             </motion.a>
 
             <motion.a
-              href="#product"
+              href="/product"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 rounded-full border border-slate-300/60 bg-transparent px-7 py-3 text-sm font-semibold text-slate-50 transition hover:bg-slate-800"
