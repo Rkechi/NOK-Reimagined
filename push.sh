@@ -1,3 +1,3 @@
 git add .
-git commit -m "Admin Page: Financial Applications Page initial commit"
+git commit -m "Admin Page: All Pages (save for contact messages) completed - initial commit"
 git push

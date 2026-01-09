@@ -234,34 +234,49 @@ const SideBar = ({ activeTab, setActiveTab, isSidebarOpen, setIsSidebarOpen }: S
 interface HeaderProps {
     isSidebarOpen: boolean;
     setIsSidebarOpen: (isOpen: boolean) => void;
+    activeTab: string;
 }
 
-const Header = ({ isSidebarOpen, setIsSidebarOpen }: HeaderProps) => {
-    return (
-        <header className="sticky top-0 z-30 bg-white border-b border-slate-200 px-4 lg:px-8 py-4 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-                <button
-                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                    className="lg:hidden p-2 hover:bg-slate-100 rounded-lg transition-colors shrink-0"
-                >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-                <div>
-                    <h1 className="text-xl font-bold text-slate-900 leading-tight">Finance Applications</h1>
-                    <p className="text-sm text-slate-600 hidden sm:block">Manage and review finance requests</p>
-                </div>
-            </div>
+const Header = ({ isSidebarOpen, setIsSidebarOpen, activeTab }: HeaderProps) => {
+    const headerContent: Record<string, { title: string; description: string }> = {
+        dashboard: { title: "Finance Applications", description: "Manage and review finance requests" },
+        appointments: { title: "Appointments", description: "View and manage scheduled appointments" },
+        messages: { title: "Contact Messages", description: "Review inquiries and support requests" },
+        customers: { title: "Customers", description: "Manage customer accounts and details" },
+        products: { title: "Products & Services", description: "Manage inventory and service offerings" },
+        analytics: { title: "Analytics Overview", description: "Performance metrics and growth stats" },
+        settings: { title: "Settings", description: "Manage your account and preferences" }
+    };
 
-            <div className="flex items-center gap-4 shrink-0">
-                <button className="relative p-2 hover:bg-slate-100 rounded-lg transition-colors">
-                    <span className="text-xl">🔔</span>
-                    <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-                </button>
-                <button className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
-                    <span className="text-xl">⚙️</span>
-                </button>
+    const currentContent = headerContent[activeTab] || { title: "Admin Dashboard", description: "Welcome back" };
+
+    return (
+        <header className="sticky top-0 z-30 bg-white border-b border-slate-200 px-4 lg:px-8 py-4">
+            <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                    <button
+                        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                        className="lg:hidden p-2 hover:bg-slate-100 rounded-lg transition-colors shrink-0"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <div>
+                        <h1 className="text-xl font-bold text-slate-900 leading-tight">{currentContent.title}</h1>
+                        <p className="text-sm text-slate-600 hidden sm:block">{currentContent.description}</p>
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-4 shrink-0">
+                    <button className="relative p-2 hover:bg-slate-100 rounded-lg transition-colors">
+                        <span className="text-xl">🔔</span>
+                        <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+                    <button className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
+                        <span className="text-xl">⚙️</span>
+                    </button>
+                </div>
             </div>
         </header>
     );
@@ -696,6 +711,374 @@ const FinanceApplications = () => {
     );
 };
 
+// --- Appointments Component ---
+
+const appointmentsData = [
+    {
+        id: "APT-001",
+        clientName: "Sarah Connor",
+        service: "Solar Consultation",
+        date: "2024-03-15",
+        time: "10:00 AM",
+        status: "Scheduled",
+        contact: "sarah@example.com",
+    },
+    {
+        id: "APT-002",
+        clientName: "Kyle Reese",
+        service: "Site Inspection",
+        date: "2024-03-16",
+        time: "02:00 PM",
+        status: "Completed",
+        contact: "kyle@example.com",
+    },
+    {
+        id: "APT-003",
+        clientName: "T-800 Model",
+        service: "Maintenance Check",
+        date: "2024-03-20",
+        time: "09:00 AM",
+        status: "Pending",
+        contact: "arnold@example.com",
+    },
+    {
+        id: "APT-004",
+        clientName: "John Connor",
+        service: "System Upgrade",
+        date: "2024-03-22",
+        time: "11:30 AM",
+        status: "Scheduled",
+        contact: "john@example.com",
+    },
+    {
+        id: "APT-005",
+        clientName: "Miles Dyson",
+        service: "Tech Support",
+        date: "2024-03-25",
+        time: "03:00 PM",
+        status: "Cancelled",
+        contact: "miles@example.com",
+    }
+];
+
+const Appointments = () => {
+    return (
+        <div className="space-y-6">
+            {/* Page Header */}
+            {/* Stats Overview */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div className="flex items-center gap-4">
+                        <div className="p-3 bg-blue-100 text-blue-600 rounded-xl">
+                            <span className="text-2xl">📅</span>
+                        </div>
+                        <div>
+                            <p className="text-sm text-slate-600 font-medium">Total Appointments</p>
+                            <h3 className="text-2xl font-bold text-slate-900">{appointmentsData.length}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div className="flex items-center gap-4">
+                        <div className="p-3 bg-emerald-100 text-emerald-600 rounded-xl">
+                            <span className="text-2xl">✅</span>
+                        </div>
+                        <div>
+                            <p className="text-sm text-slate-600 font-medium">Completed</p>
+                            <h3 className="text-2xl font-bold text-slate-900">
+                                {appointmentsData.filter(a => a.status === "Completed").length}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div className="flex items-center gap-4">
+                        <div className="p-3 bg-yellow-100 text-yellow-600 rounded-xl">
+                            <span className="text-2xl">⏳</span>
+                        </div>
+                        <div>
+                            <p className="text-sm text-slate-600 font-medium">Upcoming</p>
+                            <h3 className="text-2xl font-bold text-slate-900">
+                                {appointmentsData.filter(a => a.status === "Scheduled" || a.status === "Pending").length}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Application Table */}
+            <div className="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full">
+                        <thead className="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">ID</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Client</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Service</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Date & Time</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Status</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-200">
+                            {appointmentsData.map((app) => (
+                                <tr key={app.id} className="hover:bg-slate-50 transition-colors">
+                                    <td className="px-6 py-4 font-medium text-slate-900">{app.id}</td>
+                                    <td className="px-6 py-4">
+                                        <div>
+                                            <p className="font-medium text-slate-900">{app.clientName}</p>
+                                            <p className="text-xs text-slate-500">{app.contact}</p>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 text-slate-600">{app.service}</td>
+                                    <td className="px-6 py-4">
+                                        <div className="text-slate-900">{app.date}</div>
+                                        <div className="text-xs text-slate-500">{app.time}</div>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize
+                                            ${app.status === 'Scheduled' ? 'bg-blue-100 text-blue-800' :
+                                                app.status === 'Completed' ? 'bg-emerald-100 text-emerald-800' :
+                                                    app.status === 'Cancelled' ? 'bg-red-100 text-red-800' :
+                                                        'bg-yellow-100 text-yellow-800'
+                                            }
+                                        `}>
+                                            {app.status}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <button className="text-emerald-600 hover:text-emerald-900 text-sm font-medium">View Details</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+};
+// --- Contact Messages Component ---
+const messagesData = [
+    { id: 1, name: "Alice Johnson", email: "alice@example.com", subject: "Inquiry about Solar", status: "New", date: "2024-03-24" },
+    { id: 2, name: "Bob Smith", email: "bob@example.com", subject: "Support Request", status: "Read", date: "2024-03-23" },
+    { id: 3, name: "Charlie Brown", email: "charlie@example.com", subject: "Partnership Opportunity", status: "New", date: "2024-03-22" },
+];
+
+const ContactMessages = () => {
+    return (
+        <div className="space-y-6">
+            <div className="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                <table className="w-full text-left">
+                    <thead className="bg-slate-50 border-b border-slate-200">
+                        <tr>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Sender</th>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Subject</th>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Status</th>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Date</th>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                        {messagesData.map((msg) => (
+                            <tr key={msg.id} className="hover:bg-slate-50 transition">
+                                <td className="px-6 py-4">
+                                    <div className="font-medium text-slate-900">{msg.name}</div>
+                                    <div className="text-xs text-slate-500">{msg.email}</div>
+                                </td>
+                                <td className="px-6 py-4 text-slate-700">{msg.subject}</td>
+                                <td className="px-6 py-4">
+                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${msg.status === 'New' ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-700'}`}>
+                                        {msg.status}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4 text-slate-600">{msg.date}</td>
+                                <td className="px-6 py-4">
+                                    <button className="text-red-600 hover:text-red-800 text-sm font-medium">Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+// --- Customers Component ---
+const customersData = [
+    { id: "CUST-001", name: "Green Earth Co.", email: "contact@greenearth.com", type: "Business", status: "Active" },
+    { id: "CUST-002", name: "Jane Doe", email: "jane@example.com", type: "Individual", status: "Active" },
+    { id: "CUST-003", name: "Tech Solutions Ltd", email: "info@techsolutions.com", type: "Business", status: "Inactive" },
+];
+
+const Customers = () => {
+    return (
+        <div className="space-y-6">
+            <div className="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                <table className="w-full text-left">
+                    <thead className="bg-slate-50 border-b border-slate-200">
+                        <tr>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Name</th>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Type</th>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Status</th>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                        {customersData.map((cust) => (
+                            <tr key={cust.id} className="hover:bg-slate-50 transition">
+                                <td className="px-6 py-4">
+                                    <div className="font-medium text-slate-900">{cust.name}</div>
+                                    <div className="text-xs text-slate-500">{cust.email}</div>
+                                </td>
+                                <td className="px-6 py-4 text-slate-700">{cust.type}</td>
+                                <td className="px-6 py-4">
+                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${cust.status === 'Active' ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'}`}>
+                                        {cust.status}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4">
+                                    <button className="text-emerald-600 hover:text-emerald-800 text-sm font-medium">Edit</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+// --- Products Component ---
+const productsData = [
+    { id: "P-101", name: "Solar Panel X500", category: "Hardware", stock: 120, price: "$299.00", status: "In Stock" },
+    { id: "P-102", name: "Inverter Pro", category: "Hardware", stock: 45, price: "$1,200.00", status: "Low Stock" },
+    { id: "P-103", name: "Installation Service", category: "Service", stock: "N/A", price: "$500.00", status: "Active" },
+];
+
+const Products = () => {
+    return (
+        <div className="space-y-6">
+            <div className="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                <table className="w-full text-left">
+                    <thead className="bg-slate-50 border-b border-slate-200">
+                        <tr>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Product Name</th>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Category</th>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Price</th>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Stock Status</th>
+                            <th className="px-6 py-4 font-semibold text-slate-600">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                        {productsData.map((prod) => (
+                            <tr key={prod.id} className="hover:bg-slate-50 transition">
+                                <td className="px-6 py-4 font-medium text-slate-900">{prod.name}</td>
+                                <td className="px-6 py-4 text-slate-700">{prod.category}</td>
+                                <td className="px-6 py-4 text-slate-700">{prod.price}</td>
+                                <td className="px-6 py-4">
+                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${prod.status === 'In Stock' || prod.status === 'Active' ? 'bg-emerald-100 text-emerald-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                                        {prod.status}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4">
+                                    <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">Edit</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+
+// --- Analytics Component ---
+const Analytics = () => {
+    return (
+        <div className="space-y-6">
+            {/* KPI Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                {[
+                    { label: "Total Revenue", value: "$124,500", change: "+12%", color: "emerald" },
+                    { label: "Active Users", value: "1,240", change: "+5%", color: "blue" },
+                    { label: "New Leads", value: "86", change: "+24%", color: "purple" },
+                    { label: "Bounce Rate", value: "42%", change: "-2%", color: "yellow" },
+                ].map((stat, i) => (
+                    <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <p className="text-sm text-slate-500 font-medium">{stat.label}</p>
+                        <div className="mt-2 flex items-baseline gap-2">
+                            <span className="text-3xl font-bold text-slate-900">{stat.value}</span>
+                            <span className={`text-sm font-medium ${stat.change.startsWith('+') ? 'text-emerald-600' : 'text-red-500'}`}>
+                                {stat.change}
+                            </span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Mock Charts Area */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 h-80 flex flex-col justify-center items-center text-slate-400">
+                    <span className="text-4xl mb-2">📊</span>
+                    <p>Revenue Chart Placeholder</p>
+                </div>
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 h-80 flex flex-col justify-center items-center text-slate-400">
+                    <span className="text-4xl mb-2">📈</span>
+                    <p>User Growth Chart Placeholder</p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// --- Settings Component ---
+const Settings = () => {
+    return (
+        <div className="max-w-4xl space-y-8">
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-8">
+                {/* Profile Section */}
+                <section className="space-y-4">
+                    <h3 className="text-lg font-semibold text-slate-900 border-b pb-2">Profile Information</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium text-slate-700">Full Name</label>
+                            <input type="text" defaultValue="Admin User" className="w-full px-4 py-2 border rounded-lg bg-slate-50" />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-medium text-slate-700">Email Address</label>
+                            <input type="email" defaultValue="admin@noc.com" className="w-full px-4 py-2 border rounded-lg bg-slate-50" />
+                        </div>
+                    </div>
+                </section>
+
+                {/* Notifications Section */}
+                <section className="space-y-4">
+                    <h3 className="text-lg font-semibold text-slate-900 border-b pb-2">Notifications</h3>
+                    <div className="space-y-3">
+                        <label className="flex items-center gap-3">
+                            <input type="checkbox" defaultChecked className="w-5 h-5 text-emerald-600 rounded" />
+                            <span className="text-slate-700">Email me about new applications</span>
+                        </label>
+                        <label className="flex items-center gap-3">
+                            <input type="checkbox" defaultChecked className="w-5 h-5 text-emerald-600 rounded" />
+                            <span className="text-slate-700">Email me about system updates</span>
+                        </label>
+                    </div>
+                </section>
+
+                <div className="pt-4">
+                    <button className="px-6 py-2 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 transition">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 export default function AdminDashboard() {
     const [activeTab, setActiveTab] = useState("dashboard");
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -716,18 +1099,31 @@ export default function AdminDashboard() {
                 <Header
                     isSidebarOpen={isSidebarOpen}
                     setIsSidebarOpen={setIsSidebarOpen}
+                    activeTab={activeTab}
                 />
 
                 {/* Page Content */}
                 <main className="flex-1 p-4 lg:p-8 overflow-y-auto bg-[#f3faf6]">
                     {activeTab === "dashboard" && <FinanceApplications />}
-                    {activeTab !== "dashboard" && (
-                        <div className="text-center py-20">
-                            <span className="text-6xl mb-4 block">🚧</span>
-                            <h2 className="text-2xl font-semibold text-slate-900 mb-2">Under Development</h2>
-                            <p className="text-slate-600">This section is coming soon</p>
-                        </div>
-                    )}
+                    {activeTab === "appointments" && <Appointments />}
+                    {activeTab === "messages" && <ContactMessages />}
+                    {activeTab === "customers" && <Customers />}
+                    {activeTab === "products" && <Products />}
+                    {activeTab === "analytics" && <Analytics />}
+                    {activeTab === "settings" && <Settings />}
+                    {activeTab !== "dashboard" &&
+                        activeTab !== "appointments" &&
+                        activeTab !== "messages" &&
+                        activeTab !== "customers" &&
+                        activeTab !== "products" &&
+                        activeTab !== "analytics" &&
+                        activeTab !== "settings" && (
+                            <div className="text-center py-20">
+                                <span className="text-6xl mb-4 block">🚧</span>
+                                <h2 className="text-2xl font-semibold text-slate-900 mb-2">Under Development</h2>
+                                <p className="text-slate-600">This section is coming soon</p>
+                            </div>
+                        )}
                 </main>
             </div>
         </div>
