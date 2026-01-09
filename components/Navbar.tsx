@@ -84,6 +84,12 @@ export function Navbar() {
           {/* Actions */}
           <div className="flex items-center gap-3">
             <Link
+              href="/admin"
+              className="hidden text-sm font-medium text-slate-300 transition hover:text-white md:inline-block"
+            >
+              Log In
+            </Link>
+            <Link
               href="/contact"
               className="hidden rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 shadow-lg shadow-emerald-900/30 transition hover:bg-emerald-100 md:inline-flex"
             >
@@ -131,6 +137,7 @@ export function Navbar() {
                 { label: "Finance", href: "/finance" },
                 { label: "Contact", href: "/contact" },
                 { label: "About", href: "/about" },
+                { label: "Log In", href: "/admin" },
               ].map((link) => {
                 const isActive = pathname === link.href;
                 return (
@@ -138,8 +145,8 @@ export function Navbar() {
                     key={link.label}
                     href={link.href}
                     className={`py-1 font-medium transition ${isActive
-                        ? "text-emerald-400 font-bold underline decoration-2 underline-offset-4"
-                        : "hover:text-emerald-300"
+                      ? "text-emerald-400 font-bold underline decoration-2 underline-offset-4"
+                      : "hover:text-emerald-300"
                       }`}
                     onClick={() => setMobileNavOpen(false)}
                   >
